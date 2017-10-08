@@ -27,6 +27,7 @@
   },
   "dependencies": {
     "express": "^4.16.1",
-    "mongodb": "^2.2.31"
+    "mongodb": "^2.2.31",
+    "uuid": "^3.1.0"
   }
 }
