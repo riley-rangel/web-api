@@ -22,7 +22,8 @@ function renderAddNote() {
       createElement('input', {
         'name': 'message',
         'type': 'text',
-        'value': 'Type note here'}, []),
+        'value': 'Type note here'
+      }, []),
       createElement('button', {}, ['Add Note'])
     ])
   ])
