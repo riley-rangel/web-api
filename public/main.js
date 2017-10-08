@@ -13,9 +13,15 @@ function createElement(tag, attributes, children) {
 
 function renderAddNote() {
   const $addNote = createElement('div', {'class': 'main view'}, [
-    createElement('h1', {}, ['Add a Note']),
-    createElement('input', {'type': 'text', 'value': 'Type note here'}, []),
-    createElement('button', {}, ['Add Note'])
+    createElement('form', {
+      'action': '/',
+      'method': 'post',
+      'id': 'note-add'
+    }, [
+      createElement('h1', {}, ['Add a Note']),
+      createElement('input', {'type': 'text', 'value': 'Type note here'}, []),
+      createElement('button', {}, ['Add Note'])
+    ])
   ])
   return $addNote
 }
