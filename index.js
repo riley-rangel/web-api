@@ -2,12 +2,13 @@ const express = require('express')
 const { MongoClient } = require('mongodb')
 const path = require('path')
 const uuidv4 = require('uuid/v4')
-const bodyParser = require('bodyParser')
+const bodyParser = require('body-parser')
 const app = express()
 
 const publicPath = path.join(__dirname, 'public')
 app.use(express.static(publicPath))
-app.use(bodyParser)
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({extended: true}))
 
 app.post('/', (req, res) => {
   MongoClient.connect('mongodb://localhost/notepad', (error, db) => {
@@ -21,7 +22,7 @@ app.post('/', (req, res) => {
       '_id': uuidv4(),
       'date': new Date(),
       'user': 'user',
-      'content': ''
+      'content': req.body.message
     })
       .catch(reject => {
         console.error(reject)

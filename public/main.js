@@ -19,7 +19,10 @@ function renderAddNote() {
       'id': 'note-add'
     }, [
       createElement('h1', {}, ['Add a Note']),
-      createElement('input', {'type': 'text', 'value': 'Type note here'}, []),
+      createElement('input', {
+        'name': 'message',
+        'type': 'text',
+        'value': 'Type note here'}, []),
       createElement('button', {}, ['Add Note'])
     ])
   ])
