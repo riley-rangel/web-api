@@ -51,7 +51,9 @@ app.get('/notes', (req, res) => {
         console.error(error)
         res.sendStatus(404)
       })
-    db.close()
+      .then(() => {
+        db.close()
+      })
   })
 })
 
