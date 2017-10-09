@@ -12,4 +12,13 @@ body {
   height: 100vh;
   width: 70vw;
   background: white;
+  overflow: auto;
+}
+
+.note {
+  margin: 5px 10px;
+  padding: 20px;
+  width: calc(50% - 62px);
+  float: left;
+  border: 1px solid black;
 }
