@@ -42,6 +42,8 @@ app.get('/notes', (req, res) => {
       res.sendStatus(404)
       process.exit(1)
     }
+    const notes = db.collection('notes')
+    notes.find()
     db.close()
   })
 })
