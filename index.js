@@ -44,6 +44,9 @@ app.get('/notes', (req, res) => {
     }
     const notes = db.collection('notes')
     notes.find().toArray()
+      .then(response => {
+        res.json(response)
+      })
     db.close()
   })
 })
