@@ -14,7 +14,7 @@ app.post('/', (req, res) => {
   MongoClient.connect('mongodb://localhost/notepad', (error, db) => {
     if (error) {
       console.error(error)
-      res.sendStatus(404)
+      res.sendStatus(500)
       process.exit(1)
     }
     const notes = db.collection('notes')
@@ -39,7 +39,7 @@ app.get('/notes', (req, res) => {
   MongoClient.connect('mongodb://localhost/notepad', (error, db) => {
     if (error) {
       console.error(error)
-      res.sendStatus(404)
+      res.sendStatus(500)
       process.exit(1)
     }
     const notes = db.collection('notes')
@@ -62,16 +62,19 @@ app.put('/note-id/:id', (req, res) => {
   MongoClient.connect('mongodb://localhost/notepad', (error, db) => {
     if (error) {
       console.error(error)
-      res.sendStatus(404)
+      res.sendStatus(500)
       process.exit(1)
     }
     const notes = db.collection('notes')
     notes.updateOne({'_id': id}, {$set: {'content': req.body.message}})
       .then(() => {
-        return notes.find({'_id': id}).toArray()
+        return notes.findOne({'_id': id})
       })
       .then(note => res.json(note))
-      .catch(reject => console.error(reject))
+      .catch(reject => {
+        console.error(reject)
+        res.sendStatus(404)
+      })
       .then(() => db.close())
   })
 })
