@@ -34,3 +34,6 @@ document.body.appendChild(renderAddNote())
 const $main = document.body.querySelector('.main')
 console.log($main)
 fetch('/notes')
+  .then(response => {
+    return response.json()
+  })
