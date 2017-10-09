@@ -57,4 +57,23 @@ app.get('/notes', (req, res) => {
   })
 })
 
+app.put('/note-id/:id', (req, res) => {
+  const id = req.params.id
+  MongoClient.connect('mongodb://localhost/notepad', (error, db) => {
+    if (error) {
+      console.error(error)
+      res.sendStatus(404)
+      process.exit(1)
+    }
+    const notes = db.collection('notes')
+    notes.updateOne({'_id': id}, {$set: {'content': req.body.message}})
+      .then(() => {
+        return notes.find({'_id': id}).toArray()
+      })
+      .then(note => res.json(note))
+      .catch(reject => console.error(reject))
+      .then(() => db.close())
+  })
+})
+
 app.listen('3000', () => console.log('Port 3000 Open.'))
