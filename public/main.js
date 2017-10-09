@@ -39,9 +39,18 @@ fetch('/notes')
   })
   .then(notes => {
     notes.forEach(note => {
-      $main.appendChild(note)
+      $main.appendChild(renderNote(note))
     })
   })
   .catch(reject => {
     console.error(reject)
   })
+
+function renderNote(details) {
+  const {id, content, date, user} = details
+  const $note = createElement('div', {'class': 'note', 'data-number': id}, [
+    createElement('h3', {}, [user + ' @ ' + date]),
+    createElement('p', {}, [content])
+  ])
+  return $note
+}
