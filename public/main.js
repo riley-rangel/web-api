@@ -42,3 +42,6 @@ fetch('/notes')
       $main.appendChild(note)
     })
   })
+  .catch(reject => {
+    console.error(reject)
+  })
