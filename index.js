@@ -43,7 +43,7 @@ app.get('/notes', (req, res) => {
       process.exit(1)
     }
     const notes = db.collection('notes')
-    notes.find()
+    notes.find().toArray()
     db.close()
   })
 })
