@@ -80,6 +80,14 @@ app.put('/note-id/:id', (req, res) => {
 })
 
 app.delete('/note-id/:id', (req, res) => {
+  MongoClient.connect('mongodb://localhost/notepad', (error, db) => {
+    if (error) {
+      console.error(error)
+      res.sendStatus(500)
+      process.exit(1)
+    }
+    db.cose()
+  })
 })
 
 app.listen('3000', () => console.log('Port 3000 Open.'))
