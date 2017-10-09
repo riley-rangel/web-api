@@ -79,4 +79,7 @@ app.put('/note-id/:id', (req, res) => {
   })
 })
 
+app.delete('/note-id/:id', (req, res) => {
+})
+
 app.listen('3000', () => console.log('Port 3000 Open.'))
