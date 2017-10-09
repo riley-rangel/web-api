@@ -37,3 +37,8 @@ fetch('/notes')
   .then(response => {
     return response.json()
   })
+  .then(notes => {
+    notes.forEach(note => {
+      $main.appendChild(note)
+    })
+  })
