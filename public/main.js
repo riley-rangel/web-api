@@ -31,3 +31,5 @@ function renderAddNote() {
 }
 
 document.body.appendChild(renderAddNote())
+const $main = document.body.querySelector('.main')
+console.log($main)
