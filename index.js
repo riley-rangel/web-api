@@ -35,4 +35,15 @@ app.post('/', (req, res) => {
   })
 })
 
+app.get('/notes', (req, res) => {
+  MongoClient.connect('mongodb://localhost/notepad', (error, db) => {
+    if (error) {
+      console.error(error)
+      res.sendStatus(404)
+      process.exit(1)
+    }
+    db.close()
+  })
+})
+
 app.listen('3000', () => console.log('Port 3000 Open.'))
