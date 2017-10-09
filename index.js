@@ -47,6 +47,10 @@ app.get('/notes', (req, res) => {
       .then(response => {
         res.json(response)
       })
+      .catch(reject => {
+        console.error(error)
+        res.sendStatus(404)
+      })
     db.close()
   })
 })
