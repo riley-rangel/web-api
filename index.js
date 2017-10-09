@@ -80,13 +80,21 @@ app.put('/note-id/:id', (req, res) => {
 })
 
 app.delete('/note-id/:id', (req, res) => {
+  const id = req.params.id
   MongoClient.connect('mongodb://localhost/notepad', (error, db) => {
     if (error) {
       console.error(error)
       res.sendStatus(500)
       process.exit(1)
     }
-    db.cose()
+    const notes = db.collection('notes')
+    notes.deleteOne({'_id': id})
+      .then(response => res.send(response))
+      .catch(reject => {
+        console.error(reject)
+        res.sendStatus(404)
+      })
+      .then(() => db.close())
   })
 })
 
